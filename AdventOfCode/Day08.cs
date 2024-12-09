@@ -38,24 +38,7 @@ public sealed class Day08 : BaseDay
                 VerifyRepeatingAntinode(i, j, _matrix[i, j]);
             }
         }
-
-        for (var i = 0; i < _matrix.GetLength(0); i++)
-        {
-            for (var j = 0; j < _matrix.GetLength(1); j++)
-            {
-                if (_nullPositions.Contains((i, j)))
-                {
-                    Console.Write('#');
-                }
-                else
-                {
-                    Console.Write(_matrix[i, j]);
-                }
-            }
-
-            Console.WriteLine();
-        }
-
+        
         return new ValueTask<string>($"{_nullPositions.Count}");
     }
 
@@ -96,15 +79,7 @@ public sealed class Day08 : BaseDay
                     _nullPositions.Add((i, j));
                     while (MatrixHelper.IsInsideMatrix(_matrix, potentialAntinodeI, potentialAntinodeJ))
                     {
-                        if (MatrixHelper.IsInsideMatrix(_matrix, potentialAntinodeI, potentialAntinodeJ))
-                        {
-                            _nullPositions.Add((potentialAntinodeI, potentialAntinodeJ));
-                        }
-                        else
-                        {
-                            break;
-                        }
-
+                        _nullPositions.Add((potentialAntinodeI, potentialAntinodeJ));
                         potentialAntinodeI += di;
                         potentialAntinodeJ += dj;
                     }
